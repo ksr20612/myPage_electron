@@ -1,0 +1,308 @@
+@import "./font.scss";
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: #15181A;
+    font-family: $Medium;
+  }
+  
+  .skw-pages {
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+  }
+  
+  $skewDeg: 18deg;
+  $magicVH: 32.4vh; 
+  $scrollTime: 1s;
+  
+  .skw-page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  
+    &__half {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100vh;
+      transition: transform $scrollTime;
+  
+      &--left {
+        left: 0;
+        transform: translate3d(-$magicVH, 100%, 0);
+          }
+  
+      &--right {
+        left: 50%;
+        transform: translate3d($magicVH, -100%, 0);
+      }
+  
+      .skw-page.active & {
+        transform: translate3d(0,0,0);
+      }
+    }
+  
+    &__skewed {
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 140%;
+      height: 100%;
+      transform: skewX($skewDeg * -1);
+      background: #000;
+  
+      .skw-page__half--left & {
+        left: -40%;
+      }
+      .skw-page__half--right & {
+        right: -40%;
+      }
+    }
+  
+    &__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column wrap;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0 30%;
+      color: #fff;
+      transform: skewX($skewDeg);
+      transition: transform $scrollTime, opacity $scrollTime;
+      background-size: cover;
+  
+      .skw-page__half--left & {
+        padding-left: 30%;
+        padding-right: 30%;
+        transform-origin: 100% 0;
+      }
+      .skw-page__half--right & {
+        padding-left: 30%;
+        padding-right: 30%;
+        transform-origin: 0 100%;
+      }
+  
+      .skw-page.inactive & {
+        opacity: 0.5;
+        transform: skewX($skewDeg) scale(0.95);
+      }
+    }
+  
+    &__heading {
+      margin-bottom: 15px;
+      font-size: 25px;
+      text-align: center;
+    }
+  
+    &__description {
+      font-size: 18px;
+      text-align: center;
+      margin-top : 6vh;
+
+        & > a {
+            display : block;
+            color : white !important;
+            text-decoration : none;
+            margin-bottom : 1vh;
+        
+            &:before {
+                content : "✔ ";
+                color : white;
+            }
+
+        }
+
+    }
+    
+    &__link {
+      color: #FFA0A0;
+    }
+  
+    // 메인 페이지
+    &-1 {
+      .skw-page__half--left .skw-page__content {
+        background-image: url('../img/cover.png');
+      }
+      .skw-page__half--right .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+    }
+    // 사회불안장애 내담자를 위한 사전상담용 챗봇 개발
+    &-2 {
+      .skw-page__half--left .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+      .skw-page__half--right .skw-page__content {
+        background-image: url('../img/chatbot.png');
+        background-size : 50vw 50vh;
+        background-position : center;
+        background-repeat : no-repeat;
+      }
+    }
+    // Attention bias modification
+    &-3 {
+      .skw-page__half--left .skw-page__content {
+        background-image: url('../img/dotProbe.PNG');
+        background-size : 70vw 70vh;
+        background-position : center;
+        background-repeat : no-repeat;
+      }
+      .skw-page__half--right .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+    }
+    // computerized scrambled-sentence Test
+    &-4 {
+      .skw-page__half--left .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+      .skw-page__half--right .skw-page__content {
+        background-image: url('../img/scrambled.PNG');
+        background-size : 70vw 70vh;
+        background-position : center;
+        background-repeat : no-repeat;
+      }
+    }
+    // computerized emotional stroop test
+    &-5 {
+      .skw-page__half--left .skw-page__content {
+        background-image: url('../img/emotional.gif');
+        background-size : contain;
+        background-position : center;
+        background-repeat : no-repeat;
+      }
+      .skw-page__half--right .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+    }
+    // Online survey tool
+    &-6 {
+      .skw-page__half--left .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+      .skw-page__half--right .skw-page__content {
+        background-image: url('../img/survey.gif');
+      }
+    }
+    // 온라인 메타분석기
+    &-7 {
+      .skw-page__half--left .skw-page__content {
+        background-image: url('../img/psykit.gif');
+      }
+      .skw-page__half--right .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+    }
+    // 우울증 예방을 위한 감성챗봇용 데이터 구축
+    &-8 {
+      .skw-page__half--left .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+      .skw-page__half--right .skw-page__content {
+        background-image: url('../img/odc.gif');
+      }
+    }
+    // 노인 돌봄 챗봇 인형 개발
+    &-9 {
+      .skw-page__half--left .skw-page__content {
+        background-image: url('../img/doori.jpg');
+        background-size : contain;
+        background-position : center;
+        background-repeat : no-repeat;
+      }
+      .skw-page__half--right .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+    }
+    // 랑크
+    &-10 {
+      .skw-page__half--left .skw-page__content {
+        background: lighten(#1C1C1C, 5%);
+      }
+      .skw-page__half--right .skw-page__content {
+        background-image: url('../img/brain.png');
+      }
+    }
+  }
+
+.mail_popup {
+  position : absolute;
+  top : 50%;
+  left : 50%;
+  font-family : $Bold;
+  font-size : 2vw;
+  transform : translate(-50%, -50%);
+  z-index : 999;
+  box-shadow : rgba(0,0,0,0.8) 0 0 0 9999px;
+  background-color : rgba(0,0,0,0.8);
+  box-sizing : border-box;
+  color : white;
+  text-align : center;
+  width : 500px;
+  height : 500px;
+  display : none;
+
+  & > span {
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    width : 100%;
+    height : 100%;
+  }
+}
+
+.skw-page:last-child {
+  
+  & a {
+      display : inline-block;
+      margin-right : 1vw;
+
+      &:before {
+          content : "";
+          color : none;
+      }
+
+  }
+
+  & .button {
+    
+    width : 100px;
+    height : 100px;
+    cursor : pointer;
+    transition : all 0.2s linear;
+
+    &:last-child {
+      margin-right : 0;
+    }
+
+    &:hover {
+      transform : rotate(10deg) scale(1.03);
+    }
+
+  }
+
+}
+
+.skw-page:not(:last-child){
+
+  & a {
+
+    &:hover {
+      transform : scale(1.05);
+      transition : all 0.2s ease-out;
+    }
+
+  }
+
+}
