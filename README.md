@@ -1,4 +1,6 @@
-# myPage_electron
+# Portfolio with Electron
+
+# iCBT, digital therapies
 
 # demo 🎬
 https://blog.naver.com/naivethan/222660111009
